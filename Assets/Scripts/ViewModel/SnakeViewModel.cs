@@ -25,6 +25,11 @@ namespace Snake_Game.ViewModel
             var newTailPart = new TailModel(SnakeModel.Head, transform, tailGap);
             SnakeModel.AddTailPart(newTailPart);
         }
+
+        public void Reset() 
+        {
+
+        }
     }
 }
 

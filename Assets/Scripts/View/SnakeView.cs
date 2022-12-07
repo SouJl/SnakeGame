@@ -55,6 +55,10 @@ namespace Snake_Game.View
                 AddTail();
                 Destroy(other.gameObject);
             }
+            if(other.tag == "Border") 
+            {
+                ResetState();
+            }
         }
 
         public void AddTail() 
@@ -63,6 +67,12 @@ namespace Snake_Game.View
             _snakeViewModel.AddTail(tailTrans, TailGap);
         }
 
+        private void ResetState() 
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            /*_snakeViewModel.Reset();
+            Transform.position = Vector3.zero;*/
+        }
 
         private void OnDisable()
         {
