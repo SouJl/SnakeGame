@@ -20,9 +20,9 @@ namespace Snake_Game.ViewModel
             SnakeModel.Move(direction);
         }
 
-        public void AddTail(Transform transform) 
+        public void AddTail(Transform transform, int tailGap) 
         {
-            var newTailPart = new TailModel(SnakeModel.Head, transform);
+            var newTailPart = new TailModel(SnakeModel.Head, transform, tailGap);
             SnakeModel.AddTailPart(newTailPart);
         }
     }

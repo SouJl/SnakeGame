@@ -13,9 +13,13 @@ namespace Snake_Game.View
 
         [SerializeField] GameObject _tailObject;
 
+        [SerializeField] int _tailGap = 100;
+
         public Transform Transform { get => _transform; set => _transform = value; }
 
         public float Speed { get => _speed; }
+
+        public int TailGap { get => _tailGap; set => _tailGap = value; }
 
         private GameActions _inputActions;
 
@@ -39,8 +43,7 @@ namespace Snake_Game.View
             }
            
         }
-
-        private void Update()
+        private void FixedUpdate()
         {
             _snakeViewModel.Move(move.ReadValue<Vector2>());
         }
@@ -57,7 +60,7 @@ namespace Snake_Game.View
         public void AddTail() 
         {
             var tailTrans = Instantiate(_tailObject, _transform.position, Quaternion.identity).GetComponent<Transform>();
-            _snakeViewModel.AddTail(tailTrans);
+            _snakeViewModel.AddTail(tailTrans, TailGap);
         }
 
 
