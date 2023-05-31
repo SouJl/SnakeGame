@@ -1,9 +1,10 @@
-﻿using Snake_Game.Interfaces;
+﻿using Snake_Game.Abstractions;
+using Snake_Game.Interfaces;
 using UnityEngine;
 
 namespace Snake_Game.Model
 {
-    public class TailModel : AbstractTailModel
+    public class TailModel : AbstractTail
     {
         private Transform _transform;
         private int _tailGap;

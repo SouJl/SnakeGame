@@ -1,8 +1,8 @@
 ﻿using Snake_Game.Interfaces;
 
-namespace Snake_Game.Model
+namespace Snake_Game.Abstractions
 {
-    public abstract class AbstractTailModel: ITail
+    public abstract class AbstractTail: ITail
     {
         private IHead _head;
         private ITail _nextTail;
@@ -12,7 +12,7 @@ namespace Snake_Game.Model
         
         public int Index { get; set; }
 
-        public AbstractTailModel(IHead head)
+        public AbstractTail(IHead head)
         {
             Head = head;
         }
