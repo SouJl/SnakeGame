@@ -21,7 +21,6 @@ namespace Snake_Game.ViewModel
             }
         }
 
-
         public SnakeViewModel(SnakeModel snakeModel)
         {
             _snakeModel = snakeModel;
