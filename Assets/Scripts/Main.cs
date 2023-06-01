@@ -13,12 +13,7 @@ namespace Snake_Game
         {
             HeadModel snakeHead = new HeadModel(_snakeView.Transform, _snakeView.Speed);
             var snakeViewModel = new SnakeViewModel(new SnakeModel(snakeHead));
-
             _snakeView.Init(snakeViewModel);
-
-            _snakeView.AddTail();
-            _snakeView.AddTail();
-            _snakeView.AddTail();
         }
     }
 }

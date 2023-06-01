@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Snake_Game.Interfaces;
 using Snake_Game.ViewModel;
 using UnityEngine;
@@ -33,6 +34,10 @@ namespace Snake_Game.View
             {
                 _snakeViewModel = snakeViewModel;
                 
+                AddTail();
+                AddTail();
+                AddTail();
+
                 _inputActions = new GameActions();
                 move = _inputActions.Player.Movement;
                 move.Enable();
@@ -41,30 +46,40 @@ namespace Snake_Game.View
             {
                 Debug.Log($"Некорректная инициализация VieModel для {nameof(SnakeView)}");
             }
-           
         }
+
         private void FixedUpdate()
         {
             _snakeViewModel.Move(move.ReadValue<Vector2>());
         }
 
-        public override void Interaction(Collider other)
+        public override void Interaction(Collider collision)
         {
-            if (other.tag == "Fruit")
+            if (collision.tag == "Fruit")
             {
                 AddTail();
-                Destroy(other.gameObject);
+                Destroy(collision.gameObject);
             }
-            if(other.tag == "Border") 
+            if(collision.tag == "Border") 
             {
                 ResetState();
             }
-        }
+            if (collision.tag == "SnakeTail") 
+            {
+                if(collision.GetComponentInParent<TailView>().IsReady)
+                    ResetState();
+            }
+        } 
 
         public void AddTail() 
         {
-            var tailTrans = Instantiate(_tailObject, _transform.position, Quaternion.identity).GetComponent<Transform>();
-            _snakeViewModel.AddTail(tailTrans, TailGap);
+            var startpos = 
+                _snakeViewModel.LastTailPos == Vector3.zero 
+                ? _transform.position 
+                : _snakeViewModel.LastTailPos;
+
+            var tailView = Instantiate(_tailObject, startpos, Quaternion.identity).GetComponent<TailView>();
+            _snakeViewModel.AddTail(tailView.TailTransform, TailGap);
         }
 
         private void ResetState() 

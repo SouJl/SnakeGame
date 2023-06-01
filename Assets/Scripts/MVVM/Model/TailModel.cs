@@ -6,16 +6,12 @@ namespace Snake_Game.Model
 {
     public class TailModel : AbstractTail
     {
-        private Transform _transform;
-        private int _tailGap;
-       
-        public Transform Transform { get => _transform; set => _transform = value; }
-        public int TailGap { get => _tailGap; set => _tailGap = value; }
+        private int _tailGap;    
+        public int TailGap { get => _tailGap; }
 
-        public TailModel(IHead head, Transform transform, int tailGap) : base(head)
+        public TailModel(IHead head, Transform transform, int tailGap) : base(head, transform)
         {
-            Transform = transform;
-            TailGap = tailGap;
+            _tailGap = tailGap;
         }
 
         public override void Add(ITail tail)
@@ -35,14 +31,26 @@ namespace Snake_Game.Model
         {
             Vector3 point = Head.HeadPositions[Mathf.Min(Index * TailGap, Head.HeadPositions.Count - 1)];
 
-            Vector3 moveDirection = point - Transform.position;
-            
-            Transform.position += moveDirection * Head.Speed * Time.deltaTime;
+            Vector3 moveDirection = point - TailTransform.position;
 
-            Transform.LookAt(point);
+            TailTransform.position += moveDirection * Head.Speed * Time.deltaTime;
+
+            TailTransform.LookAt(point);
 
             if (NextTail != null)
                 NextTail.MoveNext();
+        }
+
+        public override Vector3 GetLastPos()
+        {
+            if (NextTail != null)
+            {
+                return NextTail.GetLastPos();
+            }
+            else
+            {
+                return TailTransform.position;
+            }
         }
     }
 }

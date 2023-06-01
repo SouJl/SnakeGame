@@ -11,6 +11,8 @@ namespace Snake_Game.Model
 
         public IHead Head { get => _head; }
 
+        public ITail Tail { get => _tail; }
+
         public SnakeModel(IHead head)
         {
             _head = head;

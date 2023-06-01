@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8113810273193267728}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: SnakeTail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,9 +106,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4621678211154506075}
+  - component: {fileID: 127974500379994031}
   m_Layer: 0
-  m_Name: SnakeBody
-  m_TagString: Untagged
+  m_Name: Tail
+  m_TagString: SnakeTail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,3 +130,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &127974500379994031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940702470381920902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8f31b25bafb504caaebb4459782831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tailTransform: {fileID: 4621678211154506075}
+  _tailCollider: {fileID: 8113810273193267728}

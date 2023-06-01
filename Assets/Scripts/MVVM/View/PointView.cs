@@ -2,7 +2,7 @@
 
 namespace Snake_Game.View
 {
-    public class PoinView:MonoBehaviour
+    public class PointView:MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
         {

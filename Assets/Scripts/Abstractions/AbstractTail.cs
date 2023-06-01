@@ -1,4 +1,5 @@
 ﻿using Snake_Game.Interfaces;
+using UnityEngine;
 
 namespace Snake_Game.Abstractions
 {
@@ -12,13 +13,16 @@ namespace Snake_Game.Abstractions
         
         public int Index { get; set; }
 
-        public AbstractTail(IHead head)
+        public Transform TailTransform { get; private set; }
+
+        public AbstractTail(IHead head, Transform transform)
         {
             Head = head;
+            TailTransform = transform;
         }
 
         public abstract void Add(ITail tail);
-
-        public abstract void MoveNext();
+        public abstract Vector3 GetLastPos();
+        public abstract void MoveNext(); 
     }
 }

@@ -2,15 +2,27 @@ using Snake_Game.Interfaces;
 using Snake_Game.Model;
 using UnityEngine;
 
-namespace Snake_Game.ViewModel 
+namespace Snake_Game.ViewModel
 {
-    public class SnakeViewModel: IViewModel, IMove
+    public class SnakeViewModel : IViewModel, IMove
     {
         private SnakeModel _snakeModel;
 
-        public SnakeModel SnakeModel { get => _snakeModel;}
+        public SnakeModel SnakeModel { get => _snakeModel; }
 
-        public SnakeViewModel(SnakeModel snakeModel) 
+        public Vector3 LastTailPos
+        {
+            get 
+            {
+                if (SnakeModel.Tail == null)
+                    return Vector3.zero;
+                else
+                    return SnakeModel.Tail.GetLastPos();
+            }
+        }
+
+
+        public SnakeViewModel(SnakeModel snakeModel)
         {
             _snakeModel = snakeModel;
         }
@@ -20,13 +32,13 @@ namespace Snake_Game.ViewModel
             SnakeModel.Move(direction);
         }
 
-        public void AddTail(Transform transform, int tailGap) 
+        public void AddTail(Transform transform, int tailGap)
         {
             var newTailPart = new TailModel(SnakeModel.Head, transform, tailGap);
             SnakeModel.AddTailPart(newTailPart);
         }
 
-        public void Reset() 
+        public void Reset()
         {
 
         }

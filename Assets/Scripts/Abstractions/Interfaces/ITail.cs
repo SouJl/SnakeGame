@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Snake_Game.Interfaces
 {
     public interface ITail
     {
+        Transform TailTransform { get; }
+
         int Index { get; set; }
 
         IHead Head { get; set; }
@@ -13,6 +14,7 @@ namespace Snake_Game.Interfaces
 
         void Add(ITail tail);
 
+        Vector3 GetLastPos();
         void MoveNext();
     }
 }
